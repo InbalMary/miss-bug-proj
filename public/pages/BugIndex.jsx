@@ -62,12 +62,18 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onDownloadBugs(ev){
+        ev.stopPropagation()
+        window.location.href = '/api/bug/download-pdf'
+    }
+
     return <section className="bug-index main-content">
         
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <header>
             <h3>Bug List</h3>
             <button onClick={onAddBug}>Add Bug</button>
+            <button onClick={onDownloadBugs}>Download bugs PDF</button>
         </header>
         
         <BugList 
