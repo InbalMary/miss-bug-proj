@@ -1,0 +1,37 @@
+[
+  {
+    "_id": "abc123",
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1542107359454
+  },
+  {
+    "_id": "def456",
+    "title": "Car does not start",
+    "description": "issue with ignition system",
+    "severity": 2,
+    "createdAt": 1544107359454
+  },
+  {
+    "_id": "ghi789",
+    "title": "Brakes make noise",
+    "description": "scratching noise when pressing brake pedal",
+    "severity": 1,
+    "createdAt": 1546107359454
+  },
+  {
+    "_id": "jkl012",
+    "title": "Engine overheating",
+    "description": "temperature gauge goes high while driving",
+    "severity": 4,
+    "createdAt": 1548107359454
+  },
+  {
+    "_id": "mno345",
+    "title": "Air conditioning not working",
+    "description": "no cold air blowing from vents",
+    "severity": 2,
+    "createdAt": 1550107359454
+  }
+]
