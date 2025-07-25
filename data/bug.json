@@ -33,5 +33,32 @@
     "description": "no cold air blowing from vents",
     "severity": 2,
     "createdAt": 1550107359454
+  },
+  {
+    "_id": "jMxo2",
+    "severity": null
+  },
+  {
+    "_id": "3ZwSy",
+    "severity": null
+  },
+  {
+    "_id": "Helnn",
+    "severity": null
+  },
+  {
+    "_id": "xeCTh",
+    "severity": null
+  },
+  {
+    "_id": "MUCHW",
+    "severity": null
+  },
+  {
+    "_id": "7ifVq",
+    "title": "Bug 1753366786730",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
+    "severity": 3,
+    "createdAt": "undefined"
   }
 ]
