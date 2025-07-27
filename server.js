@@ -7,20 +7,26 @@ import { loggerService } from './services/logger.service.js'
 const app = express()
 app.use(express.static('public'))
 
+app.get('/', (req, res) => res.send('Hello there'))
+
 app.get('/api/bug', (req, res) => {
     bugService.query()
         .then(bugs => res.send(bugs))
+        .catch((err) => {
+            loggerService.error('Cannot get bugs', err)
+            res.status(400).send('Cannot get bugs')
+        })
 })
 
 app.get('/api/bug/save', (req, res) => {
-    const { title, description, severity, createdAt, _id } = req.query
+    loggerService.debug('req.query', req.query)
+    const { title, description, severity, _id } = req.query
     console.log('req.query', req.query)
     const bugToSave = {
         _id,
         title,
         description,
         severity: +severity,
-        createdAt,
     }
 
     console.log('bugToSave', bugToSave)
@@ -63,7 +69,9 @@ app.get('/api/bug/:id/remove', (req, res) => {
     const bugId = req.params.id
 
     bugService.remove(bugId)
-        .then(() => res.send(`bug ${bugId} deleted`))
+        .then(() => {
+            loggerService.info(`Bug ${bugId} removed`)
+            res.send(`Removed!`)})
         .catch(err => {
             loggerService.error(err)
             res.status(400).send(err)
@@ -93,8 +101,6 @@ function formatDate(timestamp) {
 
     return `${day}/${month}/${year}`
 }
-
-app.get('/', (req, res) => res.send('Hello there'))
 
 const port = 3030
 app.listen(port, () => loggerService.info(`Server listening on port http://127.0.0.1:${port}/`))

@@ -1,5 +1,19 @@
 [
   {
+    "_id": "QjQvh",
+    "title": "Try new bug",
+    "description": "bla bla bla",
+    "severity": 2323,
+    "createdAt": 1753636590602
+  },
+  {
+    "_id": "E0CG4",
+    "title": "new bug!**",
+    "description": "helloooooooo=)",
+    "severity": 11188,
+    "createdAt": 1753635241507
+  },
+  {
     "_id": "abc123",
     "title": "Cannot save a new car",
     "description": "problem when clicking Save",
@@ -35,23 +49,7 @@
     "createdAt": 1550107359454
   },
   {
-    "_id": "jMxo2",
-    "severity": null
-  },
-  {
     "_id": "3ZwSy",
-    "severity": null
-  },
-  {
-    "_id": "Helnn",
-    "severity": null
-  },
-  {
-    "_id": "xeCTh",
-    "severity": null
-  },
-  {
-    "_id": "MUCHW",
     "severity": null
   },
   {
@@ -59,13 +57,6 @@
     "title": "Bug 1753366786730",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
     "severity": 3,
-    "createdAt": "undefined"
-  },
-  {
-    "_id": "78jBg",
-    "title": "bla bug",
-    "description": "idujifshfughgf",
-    "severity": 789,
     "createdAt": "undefined"
   }
 ]

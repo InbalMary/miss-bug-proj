@@ -35,12 +35,12 @@ function getById(bugId) {
 
 function remove(bugId) {
     return axios.get(`${BASE_URL}/${bugId}/remove`)
-        .then(res => res.data)
+        // .then(res => res.data)
 }
 
 function save(bug) {
     console.log('bug', bug)
-    var queryStr = `/save?title=${bug.title}&description=${bug.description}&severity=${bug.severity}&createdAt=${bug.createdAt}`
+    var queryStr = `/save/?title=${bug.title}&description=${bug.description}&severity=${bug.severity}`
     console.log('queryStr', queryStr)
     if (bug._id) queryStr += `&_id=${bug._id}`
 

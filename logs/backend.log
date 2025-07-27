@@ -85,3 +85,29 @@
 27.7.2025, 12:05:12 - INFO - Server listening on port http://127.0.0.1:3030/
 27.7.2025, 12:08:13 - INFO - Server listening on port http://127.0.0.1:3030/
 27.7.2025, 12:11:34 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 19:43:42 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 19:47:38 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 19:50:58 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 19:52:38 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 19:53:34 - INFO - Bug MUCHW removed
+27.7.2025, 19:53:35 - INFO - Bug Helnn removed
+27.7.2025, 19:53:36 - INFO - Bug xeCTh removed
+27.7.2025, 19:53:37 - INFO - Bug jMxo2 removed
+27.7.2025, 19:54:01 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"111","createdAt":"undefined"}
+27.7.2025, 19:54:18 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"1118","createdAt":"1753635241507","_id":"E0CG4"}
+27.7.2025, 19:57:38 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 19:57:48 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"11177","createdAt":"1753635241507","_id":"E0CG4"}
+27.7.2025, 19:58:06 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"11188","_id":"E0CG4"}
+27.7.2025, 20:02:47 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 20:02:59 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"1118","_id":"E0CG4"}
+27.7.2025, 20:08:20 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 20:08:35 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 20:08:44 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"11188","_id":"E0CG4"}
+27.7.2025, 20:12:09 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 20:12:21 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"11188","_id":"E0CG4"}
+27.7.2025, 20:14:57 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 20:15:08 - DEBUG - req.query | {"title":"new bug!","description":"helloooooooo","severity":"11188","_id":"E0CG4"}
+27.7.2025, 20:15:29 - DEBUG - req.query | {"title":"new bug!**","description":"helloooooooo=)","severity":"11188","_id":"E0CG4"}
+27.7.2025, 20:15:52 - INFO - Server listening on port http://127.0.0.1:3030/
+27.7.2025, 20:16:30 - DEBUG - req.query | {"title":"Try new bug","description":"bla bla bla","severity":"2323"}
+27.7.2025, 20:16:36 - INFO - Bug 78jBg removed
