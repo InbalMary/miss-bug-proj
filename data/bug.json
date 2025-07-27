@@ -3,8 +3,8 @@
     "_id": "abc123",
     "title": "Cannot save a new car",
     "description": "problem when clicking Save",
-    "severity": 3,
-    "createdAt": 1542107359454
+    "severity": 333,
+    "createdAt": "1542107359454"
   },
   {
     "_id": "def456",
@@ -59,6 +59,13 @@
     "title": "Bug 1753366786730",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
     "severity": 3,
+    "createdAt": "undefined"
+  },
+  {
+    "_id": "78jBg",
+    "title": "bla bug",
+    "description": "idujifshfughgf",
+    "severity": 789,
     "createdAt": "undefined"
   }
 ]

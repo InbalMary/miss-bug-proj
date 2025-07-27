@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
 
 import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -72,13 +73,15 @@ export function BugIndex() {
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <header>
             <h3>Bug List</h3>
-            <button onClick={onAddBug}>Add Bug</button>
+            <button><Link to="/bug/edit">Add Bug</Link></button>
+            {/* <button onClick={onAddBug}>Add Bug</button> */}
             <button onClick={onDownloadBugs}>Download bugs PDF</button>
         </header>
         
         <BugList 
             bugs={bugs} 
             onRemoveBug={onRemoveBug} 
-            onEditBug={onEditBug} />
+            // onEditBug={onEditBug} 
+            />
     </section>
 }

@@ -1,0 +1,23 @@
+.bug-edit {
+    text-align: center;
+}
+
+.bug-edit.loading {
+    opacity: 0.6;
+}
+
+.bug-edit form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+    width: 50vw;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.bug-edit form input {
+    max-width: 300px;
+    margin-bottom: 15px;
+}
