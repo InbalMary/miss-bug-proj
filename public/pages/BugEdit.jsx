@@ -55,13 +55,13 @@ export function BugEdit() {
             <h1>{bugId ? 'Edit' : 'Add'} Bug</h1>
             <form onSubmit={onSaveBug}>
                 <label htmlFor="title">Title</label>
-                <input onChange={handleChange} value={title} type="text" name="title" id="title" />
+                <input onChange={handleChange} value={title} type="text" name="title" id="title" placeholder={`Bug ${Date.now()}`}/>
 
                 <label htmlFor="description">Description</label>
-                <input onChange={handleChange} value={description} type="text" name="description" id="description" />
+                <input onChange={handleChange} value={description} type="text" name="description" id="description" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do" />
 
                 <label htmlFor="severity">Severity</label>
-                <input onChange={handleChange} value={severity || ''} type="number" name="severity" id="severity" />
+                <input onChange={handleChange} value={severity || ''} type="number" name="severity" id="severity" placeholder="3"/>
 
                 <button>Save</button>
                 <button><Link to="/bug">Cancel</Link></button>
