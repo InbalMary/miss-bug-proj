@@ -59,29 +59,59 @@ export function BugIndex() {
             .catch(err => showErrorMsg('Cannot update bug', err))
     }
 
-    function onSetFilterBy(filterBy) {
-        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
+    function onSetFilterBy(fieldsToUpdate) {
+        setFilterBy(prevFilter => {
+            if (prevFilter.pageIdx !== undefined) prevFilter.pageIdx = 0
+            return { ...prevFilter, ...fieldsToUpdate }
+        })
     }
 
-    function onDownloadBugs(ev){
+    function onTogglePagination() {
+        setFilterBy(prevFilter => {
+            return {
+                ...prevFilter,
+                pageIdx: (prevFilter.pageIdx === undefined) ? 0 : undefined
+            }
+        })
+    }
+
+    function onChangePage(diff) {
+        if (filterBy.pageIdx === undefined) return
+        setFilterBy(prevFilter => {
+            let nextPageIdx = prevFilter.pageIdx + diff
+            if (nextPageIdx < 0) nextPageIdx = 0
+            // if (nextPageIdx > MAX_PAGE) nextPageIdx = MAX_PAGE
+            return { ...prevFilter, pageIdx: nextPageIdx }
+        })
+    }
+
+    function onDownloadBugs(ev) {
         ev.stopPropagation()
         window.location.href = '/api/bug/download-pdf'
     }
 
     return <section className="bug-index main-content">
-        
+
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <header>
             <h3>Bug List</h3>
             <button><Link to="/bug/edit">Add Bug</Link></button>
             {/* <button onClick={onAddBug}>Add Bug</button> */}
             <button onClick={onDownloadBugs}>Download bugs PDF</button>
+            <section>
+                <button onClick={onTogglePagination}>
+                    Toggle Pagination
+                </button>
+                <button onClick={() => onChangePage(-1)}>-</button>
+                <span>{filterBy.pageIdx + 1 || 'No Pagination'}</span>
+                <button onClick={() => onChangePage(1)}>+</button>
+            </section>
         </header>
-        
-        <BugList 
-            bugs={bugs} 
-            onRemoveBug={onRemoveBug} 
-            // onEditBug={onEditBug} 
-            />
+
+        <BugList
+            bugs={bugs}
+            onRemoveBug={onRemoveBug}
+        // onEditBug={onEditBug} 
+        />
     </section>
 }

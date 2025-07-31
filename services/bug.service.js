@@ -9,6 +9,7 @@ export const bugService = {
 }
 
 const bugs = readJsonFile('./data/bug.json')
+const PAGE_SIZE = 3
 
 function query(filterBy = {}) {
 
