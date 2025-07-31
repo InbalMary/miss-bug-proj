@@ -20,8 +20,8 @@ function query(filterBy = {}) {
         bugsToDisplay = bugsToDisplay.filter(bug => regExp.test(bug.title) || regExp.test(bug.description));
     }
 
-    if (filterBy.severity) {
-        bugsToDisplay = bugsToDisplay.filter(bug => bug.severity >= filterBy.severity)
+    if (filterBy.minSeverity) {
+        bugsToDisplay = bugsToDisplay.filter(bug => bug.severity >= filterBy.minSeverity)
     }
 
     if (filterBy.labels && filterBy.labels.length > 0) {
