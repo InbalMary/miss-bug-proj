@@ -35,15 +35,20 @@ function getById(bugId) {
 
 function remove(bugId) {
     return axios.get(`${BASE_URL}/${bugId}/remove`)
-        // .then(res => res.data)
+    // .then(res => res.data)
 }
 
 function save(bug) {
     console.log('bug', bug)
     var queryStr = `/save/?title=${bug.title}&description=${bug.description}&severity=${bug.severity}`
-    console.log('queryStr', queryStr)
+
     if (bug._id) queryStr += `&_id=${bug._id}`
 
+    if (bug.labels && bug.labels.length > 0) {
+        const labelsStr = bug.labels.join(',')
+        queryStr += `&labels=${labelsStr}`
+    }
+    console.log('queryStr', queryStr)
     return axios.get(BASE_URL + queryStr)
         .then(res => res.data)
 }
@@ -52,6 +57,6 @@ function getDefaultFilter() {
     return { txt: '', minSeverity: 0 }
 }
 
-function getEmptyBug(title = '', description = '', severity = '') {
-    return { title, description, severity }
+function getEmptyBug(title = '', description = '', severity = '', labels = []) {
+    return { title, description, severity, labels }
 }

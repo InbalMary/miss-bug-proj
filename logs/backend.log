@@ -168,3 +168,31 @@
 31.7.2025, 10:24:54 - INFO - Server listening on port http://127.0.0.1:3030/
 31.7.2025, 10:25:55 - INFO - Server listening on port http://127.0.0.1:3030/
 31.7.2025, 10:26:47 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:12:02 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:12:58 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:15:40 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:16:09 - DEBUG - req.query | {"title":"","description":"","severity":""}
+31.7.2025, 11:16:49 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897"}
+31.7.2025, 11:22:37 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:23:15 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL"}
+31.7.2025, 11:25:13 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:25:21 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL"}
+31.7.2025, 11:25:33 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"dev-branch"}
+31.7.2025, 11:26:04 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:26:12 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"minor"}
+31.7.2025, 11:28:01 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:28:09 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"dev-branch"}
+31.7.2025, 11:29:23 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:29:40 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"d,e,v,-,b,r,a,n,c,h"}
+31.7.2025, 11:30:07 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:30:30 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"d,e,v,-,b,r,a,n,c,h,need-CR"}
+31.7.2025, 11:30:55 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"d,,,e,,,v,,,-,,,b,,,r,,,a,,,n,,,c,,,h,,,n,e,e,d,-,C,R"}
+31.7.2025, 11:31:55 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:32:15 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"d,,,,,,,e,,,,,,,v,,,,,,,-,,,,,,,b,,,,,,,r,,,,,,,a,,,,,,,n,,,,,,,c,,,,,,,h,,,,,,,n,,,e,,,e,,,d,,,-,,,C,,,R"}
+31.7.2025, 11:32:32 - DEBUG - req.query | {"title":"blaaaaaaaa","description":"lalalalaa","severity":"897","_id":"G1TTL","labels":"d,,,,,,,,,,,,,,,e,,,,,,,,,,,,,,,v,,,,,,,,,,,,,,,-,,,,,,,,,,,,,,,b,,,,,,,,,,,,,,,r,,,,,,,,,,,,,,,a,,,,,,,,,,,,,,,n,,,,,,,,,,,,,,,c,,,,,,,,,,,,,,,h,,,,,,,,,,,,,,,n,,,,,,,e,,,,,,,e,,,,,,,d,,,,,,,-,,,,,,,C,,,,,,,R"}
+31.7.2025, 11:34:30 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:35:02 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 11:35:12 - INFO - Bug A2BVK removed
+31.7.2025, 11:35:20 - DEBUG - req.query | {"title":"Try new bug","description":"bla bla bla","severity":"2323","_id":"QjQvh","labels":"dev-branch,need-CR,minor"}
+31.7.2025, 11:35:37 - INFO - Bug G1TTL removed
+31.7.2025, 11:35:55 - DEBUG - req.query | {"title":"Cannot save a new car","description":"problem when clicking Save","severity":"333","_id":"abc123","labels":"critical,need-CR"}

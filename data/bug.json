@@ -4,59 +4,88 @@
     "title": "Try new bug",
     "description": "bla bla bla",
     "severity": 2323,
-    "createdAt": 1753636590602
+    "createdAt": 1753636590602,
+    "labels": [
+      "dev-branch",
+      "need-CR",
+      "minor"
+    ]
   },
   {
     "_id": "E0CG4",
     "title": "new bug!**",
     "description": "helloooooooo=)",
     "severity": 11188,
-    "createdAt": 1753635241507
+    "createdAt": 1753635241507,
+    "labels": [
+      "need-CR",
+      "critical"
+    ]
   },
   {
     "_id": "abc123",
     "title": "Cannot save a new car",
     "description": "problem when clicking Save",
     "severity": 333,
-    "createdAt": "1542107359454"
+    "createdAt": "1542107359454",
+    "labels": [
+      "critical",
+      "need-CR"
+    ]
   },
   {
     "_id": "def456",
     "title": "Car does not start",
     "description": "issue with ignition system",
     "severity": 2,
-    "createdAt": 1544107359454
+    "createdAt": 1544107359454,
+    "labels": [
+      "critical",
+      "need-CR"
+    ]
   },
   {
     "_id": "ghi789",
     "title": "Brakes make noise",
     "description": "scratching noise when pressing brake pedal",
     "severity": 1,
-    "createdAt": 1546107359454
+    "createdAt": 1546107359454,
+    "labels": [
+      "dev-branch",
+      "critical"
+    ]
   },
   {
     "_id": "jkl012",
     "title": "Engine overheating",
     "description": "temperature gauge goes high while driving",
     "severity": 4,
-    "createdAt": 1548107359454
+    "createdAt": 1548107359454,
+    "labels": [
+      "need-CR"
+    ]
   },
   {
     "_id": "mno345",
     "title": "Air conditioning not working",
     "description": "no cold air blowing from vents",
     "severity": 2,
-    "createdAt": 1550107359454
-  },
-  {
-    "_id": "3ZwSy",
-    "severity": null
+    "createdAt": 1550107359454,
+    "labels": [
+      "critical",
+      "dev-branch",
+      "minor"
+    ]
   },
   {
     "_id": "7ifVq",
     "title": "Bug 1753366786730",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
     "severity": 3,
-    "createdAt": "undefined"
+    "createdAt": 1753949809588,
+    "labels": [
+      "need-CR",
+      "dev-branch"
+    ]
   }
 ]

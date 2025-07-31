@@ -22,13 +22,15 @@ app.get('/api/bug', (req, res) => {
 
 app.get('/api/bug/save', (req, res) => {
     loggerService.debug('req.query', req.query)
-    const { title, description, severity, _id } = req.query
+    const { title, description, severity, _id, labels } = req.query
     console.log('req.query', req.query)
+    const labelsArray = labels ? labels.split(',') : []
     const bugToSave = {
         _id,
         title,
         description,
         severity: +severity,
+        labels: labelsArray,
     }
 
     console.log('bugToSave', bugToSave)
