@@ -26,7 +26,20 @@ function query(filterBy = {}) {
 
     if (filterBy.labels && filterBy.labels.length > 0) {
         bugsToDisplay = bugsToDisplay.filter(bug => {
-            return bug.labels && bug.labels.some(label => filterBy.labels.includes(label))})
+            return bug.labels && filterBy.labels.every(filterLabel => bug.labels.includes(filterLabel))
+        })
+    }
+
+    if (filterBy.sortBy) {
+        const sortDir = +filterBy.sortDir || 1
+        const field = filterBy.sortBy
+
+        bugsToDisplay.sort((a, b) => {
+            if (field === 'title') return a.title.localeCompare(b.title) * sortDir
+            if (field === 'severity') return (a.severity - b.severity) * sortDir
+            if (field === 'createdAt') return (a.createdAt - b.createdAt) * sortDir
+            return 0
+        })
     }
 
     if (filterBy.pageIdx !== undefined) {
@@ -54,7 +67,7 @@ function remove(bugId) {
         loggerService.error(`Couldnt find bug ${bugId} in bugService`)
         return Promise.reject(`Couldnt remove bug`)
     }
-    
+
     bugs.splice(idx, 1)
     return _saveBugs()
 }

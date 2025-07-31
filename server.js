@@ -16,12 +16,20 @@ app.get('/', (req, res) => res.send('Hello there'))
 
 //* Read 
 app.get('/api/bug', (req, res) => {
+    console.log('Query params:', req.query)
+    let labels = req.query.labels || req.query['labels[]']
+    if (labels && typeof labels === 'string') {
+        labels = [labels]
+    }
+    if (!labels) labels = []
 
     const filterBy = {
         txt: req.query.txt,
-        minSeverity: +req.query.minSpeed,
-        labels: req.query.labels,
-        pageIdx: req.query.pageIdx
+        minSeverity: +req.query.minSeverity,
+        labels,
+        pageIdx: req.query.pageIdx,
+        sortBy: req.query.sortBy,
+        sortDir: +req.query.sortDir || 1,
     }
 
     bugService.query(filterBy)

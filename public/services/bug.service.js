@@ -62,7 +62,7 @@ function save(bug) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0 }
+    return { txt: '', minSeverity: 0, sortBy: '', sortDir: 1, labels : [] }
 }
 
 function getEmptyBug(title = '', description = '', severity = '', labels = []) {
