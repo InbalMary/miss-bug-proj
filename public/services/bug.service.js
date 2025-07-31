@@ -57,6 +57,7 @@ function save(bug) {
     if (bug._id) {
         return axios.put(BASE_URL + '/' + bug._id, bug).then(res => res.data)
     } else {
+        console.log('bug', bug)
         return axios.post(BASE_URL, bug).then(res => res.data)
     }
 }

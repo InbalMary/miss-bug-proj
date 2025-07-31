@@ -11,24 +11,18 @@ const app = express()
 app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json())
+app.set('query parser', 'extended')
 
 app.get('/', (req, res) => res.send('Hello there'))
 
 //* Read 
 app.get('/api/bug', (req, res) => {
-    console.log('Query params:', req.query)
-    let labels = req.query.labels || req.query['labels[]']
-    if (labels && typeof labels === 'string') {
-        labels = [labels]
-    }
-    if (!labels) labels = []
-
     const filterBy = {
-        txt: req.query.txt,
-        minSeverity: +req.query.minSeverity,
-        labels,
+        txt: req.query.txt || '',
+        minSeverity: +req.query.minSeverity || 0,
+        labels: req.query.labels || [],
         pageIdx: req.query.pageIdx,
-        sortBy: req.query.sortBy,
+        sortBy: req.query.sortBy || '',
         sortDir: +req.query.sortDir || 1,
     }
 
@@ -42,17 +36,14 @@ app.get('/api/bug', (req, res) => {
 
 //* Create
 app.post('/api/bug', (req, res) => {
+    console.log('req.body', req.body)
     const { title, description, severity, labels } = req.body
-
-    let labelsArray = []
-    if (typeof labels === 'string') labelsArray = labels.split(',')
-    else if (Array.isArray(labels)) labelsArray = labels
 
     const bugToSave = {
         title,
         description,
         severity: +severity,
-        labels: labelsArray,
+        labels,
     }
 
     console.log('bugToSave', bugToSave)
@@ -68,16 +59,12 @@ app.post('/api/bug', (req, res) => {
 app.put('/api/bug/:bugId', (req, res) => {
     const { title, description, severity, labels, _id } = req.body
 
-    let labelsArray = []
-    if (typeof labels === 'string') labelsArray = labels.split(',')
-    else if (Array.isArray(labels)) labelsArray = labels
-
     const bugToSave = {
         _id,
         title,
         description,
         severity: +severity,
-        labels: labelsArray,
+        labels,
     }
 
     bugService.save(bugToSave)
@@ -104,11 +91,11 @@ app.get('/api/bug/download-pdf', (req, res) => {
         })
 })
 
-app.get('/api/bug/cookies', (req, res) => {
-    const bugId = req.query._id
-    console.log('req.cookies:', req.cookies)
-
-    let visitedBugs = JSON.parse(req.cookies.visitedBugs || '[]')
+//* Get/Read by id
+app.get('/api/bug/:id', (req, res) => {
+    const bugId = req.params.id
+//here add the cookie check
+     let visitedBugs = JSON.parse(req.cookies.visitedBugs || '[]')
     console.log('visitedBugs:', visitedBugs)
 
     if (!visitedBugs.includes(bugId)) {
@@ -118,20 +105,6 @@ app.get('/api/bug/cookies', (req, res) => {
         visitedBugs.push(bugId)
     }
     res.cookie('visitedBugs', JSON.stringify(visitedBugs), { maxAge: 1000 * 7 * 60 })
-
-    // res.send(`visitedBugs arr - ${visitedBugs}`)
-    bugService.getById(bugId)
-        .then(bug => {
-            res.json(bug)
-        })
-        .catch(err => {
-            res.status(400).send(err)
-        })
-})
-
-//* Get/Read by id
-app.get('/api/bug/:id', (req, res) => {
-    const bugId = req.params.id
 
     bugService.getById(bugId)
         .then(bug => res.send(bug))
