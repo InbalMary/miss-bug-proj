@@ -1,11 +1,13 @@
 import express from 'express'
 import PDFDocument from 'pdfkit-table'
+import cookieParser from 'cookie-parser'
 
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 
 const app = express()
 app.use(express.static('public'))
+app.use(cookieParser())
 
 app.get('/', (req, res) => res.send('Hello there'))
 
@@ -54,6 +56,31 @@ app.get('/api/bug/download-pdf', (req, res) => {
         })
 })
 
+app.get('/api/bug/cookies', (req, res) => {
+    const bugId = req.query._id
+    console.log('req.cookies:', req.cookies)
+
+    let visitedBugs = JSON.parse(req.cookies.visitedBugs || '[]')
+    console.log('visitedBugs:', visitedBugs)
+
+    if (!visitedBugs.includes(bugId)) {
+        if (visitedBugs.length >= 3) {
+            return res.status(401).send('Wait for a bit')
+        }
+        visitedBugs.push(bugId)
+    }
+    res.cookie('visitedBugs', JSON.stringify(visitedBugs), { maxAge: 1000 * 7 * 60 })
+
+    // res.send(`visitedBugs arr - ${visitedBugs}`)
+    bugService.getById(bugId)
+        .then(bug => {
+            res.json(bug)
+        })
+        .catch(err => {
+            res.status(400).send(err)
+        })
+})
+
 app.get('/api/bug/:id', (req, res) => {
     const bugId = req.params.id
 
@@ -71,7 +98,8 @@ app.get('/api/bug/:id/remove', (req, res) => {
     bugService.remove(bugId)
         .then(() => {
             loggerService.info(`Bug ${bugId} removed`)
-            res.send(`Removed!`)})
+            res.send(`Removed!`)
+        })
         .catch(err => {
             loggerService.error(err)
             res.status(400).send(err)

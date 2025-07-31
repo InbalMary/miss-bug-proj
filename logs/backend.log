@@ -111,3 +111,60 @@
 27.7.2025, 20:15:52 - INFO - Server listening on port http://127.0.0.1:3030/
 27.7.2025, 20:16:30 - DEBUG - req.query | {"title":"Try new bug","description":"bla bla bla","severity":"2323"}
 27.7.2025, 20:16:36 - INFO - Bug 78jBg removed
+30.7.2025, 12:05:10 - INFO - Server listening on port http://127.0.0.1:3030/
+30.7.2025, 20:27:49 - INFO - Server listening on port http://127.0.0.1:3030/
+30.7.2025, 20:45:15 - INFO - Server listening on port http://127.0.0.1:3030/
+30.7.2025, 20:46:34 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 8:43:33 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 8:45:00 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 8:50:10 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 8:55:27 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 8:59:44 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:01:48 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:01:48 - ERROR - Couldnt get bug
+31.7.2025, 9:02:02 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:02:02 - ERROR - Couldnt get bug
+31.7.2025, 9:02:29 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:02:29 - ERROR - Couldnt get bug
+31.7.2025, 9:15:21 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:16:25 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:16:25 - ERROR - Couldnt get bug
+31.7.2025, 9:18:13 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:18:14 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:18:14 - ERROR - Couldnt get bug
+31.7.2025, 9:18:43 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:25:22 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:27:08 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:28:29 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:31:04 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:31:17 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:31:20 - ERROR - Request or cookies are undefined
+31.7.2025, 9:31:36 - ERROR - Request or cookies are undefined
+31.7.2025, 9:31:38 - ERROR - Request or cookies are undefined
+31.7.2025, 9:33:34 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:40:07 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:40:36 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:41:05 - ERROR - Couldnt get bug
+31.7.2025, 9:41:05 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:43:12 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:43:12 - ERROR - Couldnt get bug
+31.7.2025, 9:43:23 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:43:23 - ERROR - Couldnt get bug
+31.7.2025, 9:44:40 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:44:40 - ERROR - Couldnt get bug
+31.7.2025, 9:46:01 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:46:16 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:46:16 - ERROR - Couldnt get bug
+31.7.2025, 9:47:52 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 9:47:54 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:47:54 - ERROR - Couldnt get bug
+31.7.2025, 9:47:56 - ERROR - Couldnt find bug cookies in bugService
+31.7.2025, 9:47:56 - ERROR - Couldnt get bug
+31.7.2025, 9:48:35 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:05:57 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:12:38 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:13:29 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:24:23 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:24:54 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:25:55 - INFO - Server listening on port http://127.0.0.1:3030/
+31.7.2025, 10:26:47 - INFO - Server listening on port http://127.0.0.1:3030/
