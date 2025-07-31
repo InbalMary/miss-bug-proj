@@ -10,8 +10,30 @@ export const bugService = {
 
 const bugs = readJsonFile('./data/bug.json')
 
-function query() {
-    return Promise.resolve(bugs)
+function query(filterBy = {}) {
+
+    let bugsToDisplay = bugs
+
+    if (filterBy.txt) {
+        const regExp = new RegExp(filterBy.txt, 'i')
+        bugsToDisplay = bugsToDisplay.filter(bug => regExp.test(bug.title) || regExp.test(bug.description));
+    }
+
+    if (filterBy.severity) {
+        bugsToDisplay = bugsToDisplay.filter(bug => bug.severity >= filterBy.severity)
+    }
+
+    if (filterBy.labels && filterBy.labels.length > 0) {
+        bugsToDisplay = bugsToDisplay.filter(bug => {
+            return bug.labels && bug.labels.some(label => filterBy.labels.includes(label))})
+    }
+
+    if (filterBy.pageIdx !== undefined) {
+        const startIdx = filterBy.pageIdx * PAGE_SIZE // 0, 3, 6
+        bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE)
+    }
+
+    return Promise.resolve(bugsToDisplay)
 }
 
 function getById(bugId) {

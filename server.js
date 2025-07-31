@@ -1,3 +1,5 @@
+import path from 'path'
+
 import express from 'express'
 import PDFDocument from 'pdfkit-table'
 import cookieParser from 'cookie-parser'
@@ -8,11 +10,21 @@ import { loggerService } from './services/logger.service.js'
 const app = express()
 app.use(express.static('public'))
 app.use(cookieParser())
+app.use(express.json())
 
 app.get('/', (req, res) => res.send('Hello there'))
 
+//* Read 
 app.get('/api/bug', (req, res) => {
-    bugService.query()
+
+    const filterBy = {
+        txt: req.query.txt,
+        minSeverity: +req.query.minSpeed,
+        labels: req.query.labels,
+        pageIdx: req.query.pageIdx
+    }
+
+    bugService.query(filterBy)
         .then(bugs => res.send(bugs))
         .catch((err) => {
             loggerService.error('Cannot get bugs', err)
@@ -20,13 +32,15 @@ app.get('/api/bug', (req, res) => {
         })
 })
 
-app.get('/api/bug/save', (req, res) => {
-    loggerService.debug('req.query', req.query)
-    const { title, description, severity, _id, labels } = req.query
-    console.log('req.query', req.query)
-    const labelsArray = labels ? labels.split(',') : []
+//* Create
+app.post('/api/bug', (req, res) => {
+    const { title, description, severity, labels } = req.body
+
+    let labelsArray = []
+    if (typeof labels === 'string') labelsArray = labels.split(',')
+    else if (Array.isArray(labels)) labelsArray = labels
+
     const bugToSave = {
-        _id,
         title,
         description,
         severity: +severity,
@@ -39,6 +53,30 @@ app.get('/api/bug/save', (req, res) => {
         .catch(err => {
             loggerService.error(err)
             res.status(400).send(err)
+        })
+})
+
+//* Update
+app.put('/api/bug/:bugId', (req, res) => {
+    const { title, description, severity, labels, _id } = req.body
+
+    let labelsArray = []
+    if (typeof labels === 'string') labelsArray = labels.split(',')
+    else if (Array.isArray(labels)) labelsArray = labels
+
+    const bugToSave = {
+        _id,
+        title,
+        description,
+        severity: +severity,
+        labels: labelsArray,
+    }
+
+    bugService.save(bugToSave)
+        .then(updatedBug => res.send(updatedBug))
+        .catch(err => {
+            loggerService.error('Cannot update bug', err)
+            res.status(400).send('Cannot update bug')
         })
 })
 
@@ -83,6 +121,7 @@ app.get('/api/bug/cookies', (req, res) => {
         })
 })
 
+//* Get/Read by id
 app.get('/api/bug/:id', (req, res) => {
     const bugId = req.params.id
 
@@ -94,8 +133,9 @@ app.get('/api/bug/:id', (req, res) => {
         })
 })
 
-app.get('/api/bug/:id/remove', (req, res) => {
-    const bugId = req.params.id
+//* Remove/Delete
+app.delete('/api/bug/:id', (req, res) => {
+    const bugId = req.params
 
     bugService.remove(bugId)
         .then(() => {
@@ -131,6 +171,11 @@ function formatDate(timestamp) {
 
     return `${day}/${month}/${year}`
 }
+
+//* Fallback route (For production or when using browser-router)
+app.get('/*all', (req, res) => {
+    res.sendFile(path.resolve('public/index.html'))
+})
 
 const port = 3030
 app.listen(port, () => loggerService.info(`Server listening on port http://127.0.0.1:${port}/`))

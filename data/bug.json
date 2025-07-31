@@ -1,15 +1,22 @@
 [
   {
+    "title": "1111111",
+    "description": "22222222",
+    "severity": 33,
+    "labels": [
+      "critical",
+      "dev-branch"
+    ],
+    "_id": "nPcaF",
+    "createdAt": 1753955791088
+  },
+  {
     "_id": "QjQvh",
     "title": "Try new bug",
     "description": "bla bla bla",
     "severity": 2323,
     "createdAt": 1753636590602,
-    "labels": [
-      "dev-branch",
-      "need-CR",
-      "minor"
-    ]
+    "labels": []
   },
   {
     "_id": "E0CG4",
@@ -81,11 +88,10 @@
     "_id": "7ifVq",
     "title": "Bug 1753366786730",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do",
-    "severity": 3,
+    "severity": 7899,
     "createdAt": 1753949809588,
     "labels": [
-      "need-CR",
-      "dev-branch"
+      "critical"
     ]
   }
 ]
