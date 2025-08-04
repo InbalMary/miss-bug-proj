@@ -21,7 +21,7 @@ app.get('/api/bug', (req, res) => {
         txt: req.query.txt || '',
         minSeverity: +req.query.minSeverity || 0,
         labels: req.query.labels || [],
-        pageIdx: req.query.pageIdx,
+        pageIdx: parseInt(req.query.pageIdx) || 0,
         sortBy: req.query.sortBy || '',
         sortDir: +req.query.sortDir || 1,
     }
@@ -31,6 +31,18 @@ app.get('/api/bug', (req, res) => {
         .catch((err) => {
             loggerService.error('Cannot get bugs', err)
             res.status(400).send('Cannot get bugs')
+        })
+})
+
+app.get('/api/bug/totalBugs', (req, res) => {
+
+    bugService.getTotalCount().then((count) => {
+        res.status(200).json(count);
+    })
+
+        .catch((err) => {
+            loggerService.error('Cannot get total bugs', err)
+            res.status(503).send('Cannot get total bugs')
         })
 })
 

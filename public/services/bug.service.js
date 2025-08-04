@@ -8,6 +8,7 @@ export const bugService = {
     remove,
     getDefaultFilter,
     getEmptyBug,
+    getTotalBugs,
 }
 
 function query(filterBy = {}) {
@@ -68,4 +69,9 @@ function getDefaultFilter() {
 
 function getEmptyBug(title = '', description = '', severity = '', labels = []) {
     return { title, description, severity, labels }
+}
+
+function getTotalBugs(){
+    return axios.get(BASE_URL+'/totalBugs')
+        .then(res => res.data)
 }

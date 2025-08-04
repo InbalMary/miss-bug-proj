@@ -9,14 +9,30 @@ import { BugList } from '../cmps/BugList.jsx'
 
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
+    const [totalCount, setTotalCount] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
 
-    useEffect(loadBugs, [filterBy])
+    useEffect(() => {
+        loadBugs()
+        getTotalCount()
+    }, [filterBy])
 
     function loadBugs() {
         bugService.query(filterBy)
             .then(setBugs)
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
+    }
+
+    function getTotalCount() {
+        bugService.getTotalBugs().then((count) => {
+            const buttons = []
+            buttons.length = count
+            buttons.fill({ disabled: false }, 0, count)
+            console.log('Total count:', buttons);
+
+            setTotalCount(buttons)
+        }).catch(err => showErrorMsg(`Couldn't get total count - ${err}`))
+
     }
 
     function onRemoveBug(bugId) {
@@ -59,29 +75,39 @@ export function BugIndex() {
             .catch(err => showErrorMsg('Cannot update bug', err))
     }
 
-    function onSetFilterBy(fieldsToUpdate) {
-        setFilterBy(prevFilter => {
-            if (prevFilter.pageIdx !== undefined) prevFilter.pageIdx = 0
-            return { ...prevFilter, ...fieldsToUpdate }
-        })
+    // function onSetFilterBy(fieldsToUpdate) {
+    //     setFilterBy(prevFilter => {
+    //         if (prevFilter.pageIdx !== undefined) prevFilter.pageIdx = 0
+    //         return { ...prevFilter, ...fieldsToUpdate }
+    //     })
+    // }
+
+    // function onTogglePagination() {
+    //     setFilterBy(prevFilter => {
+    //         return {
+    //             ...prevFilter,
+    //             pageIdx: (prevFilter.pageIdx === undefined) ? 0 : undefined
+    //         }
+    //     })
+    // }
+
+    // function onChangePage(diff) {
+    //     if (filterBy.pageIdx === undefined) return
+    //     setFilterBy(prevFilter => {
+    //         let nextPageIdx = prevFilter.pageIdx + diff
+    //         if (nextPageIdx < 0) nextPageIdx = 0
+    //         // if (nextPageIdx > MAX_PAGE) nextPageIdx = MAX_PAGE
+    //         return { ...prevFilter, pageIdx: nextPageIdx }
+    //     })
+    // }
+
+    function onSetFilterBy(filterBy) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
-    function onTogglePagination() {
+    function onChangePage(idx) {
         setFilterBy(prevFilter => {
-            return {
-                ...prevFilter,
-                pageIdx: (prevFilter.pageIdx === undefined) ? 0 : undefined
-            }
-        })
-    }
-
-    function onChangePage(diff) {
-        if (filterBy.pageIdx === undefined) return
-        setFilterBy(prevFilter => {
-            let nextPageIdx = prevFilter.pageIdx + diff
-            if (nextPageIdx < 0) nextPageIdx = 0
-            // if (nextPageIdx > MAX_PAGE) nextPageIdx = MAX_PAGE
-            return { ...prevFilter, pageIdx: nextPageIdx }
+            return { ...prevFilter, pageIdx: idx }
         })
     }
 
@@ -98,14 +124,14 @@ export function BugIndex() {
             <button><Link to="/bug/edit">Add Bug</Link></button>
             {/* <button onClick={onAddBug}>Add Bug</button> */}
             <button onClick={onDownloadBugs}>Download bugs PDF</button>
-            <section>
+            {/* <section>
                 <button onClick={onTogglePagination}>
                     Toggle Pagination
                 </button>
                 <button onClick={() => onChangePage(-1)}>-</button>
                 <span>{filterBy.pageIdx + 1 || 'No Pagination'}</span>
                 <button onClick={() => onChangePage(1)}>+</button>
-            </section>
+            </section> */}
         </header>
 
         <BugList
@@ -113,5 +139,15 @@ export function BugIndex() {
             onRemoveBug={onRemoveBug}
         // onEditBug={onEditBug} 
         />
+        {totalCount && <footer>
+            <div>
+                {totalCount.map((btn, idx) => (
+                    <button onClick={() => onChangePage(idx)}
+                        key={idx} className={`page-btn ${btn.disabled ? 'disabled' : ''}`}>
+                        {idx + 1}
+                    </button>
+                ))}
+            </div>
+        </footer>}
     </section>
 }

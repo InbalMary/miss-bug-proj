@@ -6,10 +6,12 @@ export const bugService = {
     getById,
     remove,
     save,
+    getTotalCount,
 }
 
 const bugs = readJsonFile('./data/bug.json')
-const PAGE_SIZE = 3
+const BUGS_PER_PAGE = 4
+let totalPages = null
 
 function query(filterBy = {}) {
 
@@ -43,10 +45,20 @@ function query(filterBy = {}) {
     }
 
     if (filterBy.pageIdx !== undefined) {
-        const startIdx = filterBy.pageIdx * PAGE_SIZE // 0, 3, 6
-        bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE)
-    }
+        //     const startIdx = filterBy.pageIdx * PAGE_SIZE // 0, 3, 6
+        //     bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE)
 
+        totalPages = Math.floor(bugsToDisplay.length / BUGS_PER_PAGE)
+        let pageIdx = filterBy.pageIdx
+
+        if (pageIdx < 0) pageIdx = totalPages - 1
+        if (pageIdx >= totalPages) pageIdx = 0
+
+        let startIdx = pageIdx * BUGS_PER_PAGE
+        const endIdx = startIdx + BUGS_PER_PAGE
+
+        bugsToDisplay = bugsToDisplay.slice(startIdx, endIdx)
+    }
     return Promise.resolve(bugsToDisplay)
 }
 
@@ -87,4 +99,8 @@ function save(bugToSave) {
 
 function _saveBugs() {
     return writeJsonFile('./data/bug.json', bugs)
+}
+
+function getTotalCount() {
+    return Promise.resolve(totalPages)
 }
