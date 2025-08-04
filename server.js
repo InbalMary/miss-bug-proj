@@ -77,25 +77,27 @@ app.put('/api/bug/:bugId', (req, res) => {
 
 
 app.get('/api/bug/download-pdf', (req, res) => {
-    let doc = new PDFDocument({ margin: '30', size: 'A4', layout: 'landscape' })
-
-    doc.pipe(res)
-
     bugService.query()
         .then(bugs => {
-            console.log('bugs:', bugs)
-            return createPdf(doc, bugs)
+            res.setHeader('Content-Disposition', 'attachment; filename=bugs.pdf')
+            res.setHeader('Content-Type', 'application/pdf')
+
+            const doc = new PDFDocument({ margin: 30, size: 'A4', layout: 'landscape' })
+            doc.pipe(res)
+
+            return createPdf(doc, bugs).then(() => doc.end())
         })
-        .then(() => {
-            doc.end()
+        .catch(err => {
+            loggerService.error('PDF creation failed', err)
+            res.status(500).send('Failed to generate PDF')
         })
 })
 
 //* Get/Read by id
 app.get('/api/bug/:id', (req, res) => {
     const bugId = req.params.id
-//here add the cookie check
-     let visitedBugs = JSON.parse(req.cookies.visitedBugs || '[]')
+    //here add the cookie check
+    let visitedBugs = JSON.parse(req.cookies.visitedBugs || '[]')
     console.log('visitedBugs:', visitedBugs)
 
     if (!visitedBugs.includes(bugId)) {
@@ -133,15 +135,17 @@ function createPdf(doc, bugs) {
     const table = {
         title: 'Bugs',
         subtitle: 'List of all bugs:',
-        headers: ['title', 'severity', 'description', 'createdAt'],
+        headers: ['Title', 'Severity', 'Description', 'Created At', 'Labels'],
         rows: bugs.map(bug => [
             bug.title,
             +bug.severity,
             bug.description,
-            formatDate(bug.createdAt)
+            formatDate(bug.createdAt),
+            (bug.labels || []).join(', ')
         ])
     }
-    return doc.table(table, { columnsSize: [100, 100, 100, 100] })
+
+    return doc.table(table, { columnsSize: [100, 70, 150, 90, 100] })
 }
 
 function formatDate(timestamp) {
