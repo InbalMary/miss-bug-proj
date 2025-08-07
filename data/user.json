@@ -20,5 +20,11 @@
     "fullname": "Puki Ja",
     "password": "secret2",
     "score": 100
+  },
+  {
+    "username": "Shuki",
+    "fullname": "Shuki shuk",
+    "password": "secret4",
+    "_id": "xP5hN"
   }
 ]

@@ -6,7 +6,9 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "nodemon --ignore \"./data\" server.js",
+    "dev": "set PORT=3030&nodemon --ignore \"./data\" server.js",
+    "dev:mac": "export PORT=3030 && nodemon --ignore \"./data\" server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Inbal Mary",
@@ -15,6 +17,7 @@
   "description": "",
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "cryptr": "^6.3.0",
     "express": "^5.1.0",
     "follow-redirects": "^1.15.9",
     "pdfkit-table": "^0.1.99"

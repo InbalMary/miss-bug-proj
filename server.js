@@ -6,6 +6,8 @@ import cookieParser from 'cookie-parser'
 
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
+import { userService } from './services/user.service.js'
+import { authService } from './services/auth.service.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -48,6 +50,9 @@ app.get('/api/bug/totalBugs', (req, res) => {
 
 //* Create
 app.post('/api/bug', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Cannot add car')
+
     console.log('req.body', req.body)
     const { title, description, severity, labels } = req.body
 
@@ -59,7 +64,7 @@ app.post('/api/bug', (req, res) => {
     }
 
     console.log('bugToSave', bugToSave)
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedinUser)
         .then(savedBug => res.send(savedBug))
         .catch(err => {
             loggerService.error(err)
@@ -69,7 +74,10 @@ app.post('/api/bug', (req, res) => {
 
 //* Update
 app.put('/api/bug/:bugId', (req, res) => {
-    const { title, description, severity, labels, _id } = req.body
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Cannot update car')
+
+    const { title, description, severity, labels, _id, creator } = req.body
 
     const bugToSave = {
         _id,
@@ -77,9 +85,10 @@ app.put('/api/bug/:bugId', (req, res) => {
         description,
         severity: +severity,
         labels,
+        creator,
     }
 
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedinUser)
         .then(updatedBug => res.send(updatedBug))
         .catch(err => {
             loggerService.error('Cannot update bug', err)
@@ -130,9 +139,12 @@ app.get('/api/bug/:id', (req, res) => {
 
 //* Remove/Delete
 app.delete('/api/bug/:id', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Cannot delete car')
+
     const bugId = req.params
 
-    bugService.remove(bugId)
+    bugService.remove(bugId, loggedinUser)
         .then(() => {
             loggerService.info(`Bug ${bugId} removed`)
             res.send(`Removed!`)
@@ -168,6 +180,61 @@ function formatDate(timestamp) {
 
     return `${day}/${month}/${year}`
 }
+
+// User API
+app.get('/api/user', (req, res) => {
+    userService.query()
+        .then(users => res.send(users))
+        .catch(err => {
+            loggerService.error('Cannot load users', err)
+            res.status(400).send('Cannot load users')
+        })
+})
+
+app.get('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => {
+            loggerService.error('Cannot load user', err)
+            res.status(400).send('Cannot load user')
+        })
+})
+
+// Auth API
+app.post('/api/auth/login', (req, res) => {
+    const credentials = req.body
+
+    authService.checkLogin(credentials)
+        .then(user => {
+            const loginToken = authService.getLoginToken(user)
+            res.cookie('loginToken', loginToken)
+            res.send(user)
+        })
+        .catch(() => res.status(404).send('Invalid Credentials'))
+})
+
+app.post('/api/auth/signup', (req, res) => {
+    const credentials = req.body
+
+    userService.add(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = authService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(400).send('Cannot signup')
+            }
+        })
+        .catch(err => res.status(400).send('Username taken.'))
+})
+
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged-out!')
+})
 
 //* Fallback route (For production or when using browser-router)
 app.get('/*all', (req, res) => {

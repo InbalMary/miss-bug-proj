@@ -72,25 +72,29 @@ function getById(bugId) {
     return Promise.resolve(bug)
 }
 
-function remove(bugId) {
+function remove(bugId, loggedinUser) {
     const idx = bugs.findIndex(bug => bug._id === bugId)
 
     if (idx === -1) {
         loggerService.error(`Couldnt find bug ${bugId} in bugService`)
         return Promise.reject(`Couldnt remove bug`)
     }
+    const bug = bugs[idx]
 
+    if (!loggedinUser.isAdmin && bug.creator._id !== loggedinUser._id) return Promise.reject('Not your Bug')
     bugs.splice(idx, 1)
     return _saveBugs()
 }
 
-function save(bugToSave) {
+function save(bugToSave, loggedinUser) {
     if (bugToSave._id) {
         const idx = bugs.findIndex(bug => bug._id === bugToSave._id)
+        if (!loggedinUser.isAdmin && bugToSave.creator._id !== loggedinUser._id) return Promise.reject('Not your Bug')
         bugs[idx] = { ...bugs[idx], ...bugToSave }
     } else {
         bugToSave._id = makeId()
         bugToSave.createdAt = Date.now()
+        bugToSave.creator = loggedinUser
         bugs.unshift(bugToSave)
     }
     return _saveBugs()
