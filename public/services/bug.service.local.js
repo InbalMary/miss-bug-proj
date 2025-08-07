@@ -31,6 +31,10 @@ function query(filterBy = {}) {
                 bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
             }
 
+            if (filterBy.creator) {
+                bugs = bugs.filter(bug => bug.creator && bug.creator._id === filterBy.creator)
+            }
+
             if (filterBy.pageIdx !== undefined && filterBy.pageIdx !== null) {
                     const startIdx = pageIdx * PAGE_SIZE // 0, 3, 6
                     bugs = bugs.slice(startIdx, startIdx + PAGE_SIZE)

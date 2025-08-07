@@ -26,6 +26,10 @@ function query(filterBy = {}) {
         bugsToDisplay = bugsToDisplay.filter(bug => bug.severity >= filterBy.minSeverity)
     }
 
+    if (filterBy.creator) {
+        bugs = bugs.filter(bug => bug.creator && bug.creator._id === filterBy.creator)
+    }
+
     if (Array.isArray(filterBy.labels) && filterBy.labels.length > 0) {
         bugsToDisplay = bugsToDisplay.filter(bug => {
             return filterBy.labels.every(filterLabel => bug.labels.includes(filterLabel))
