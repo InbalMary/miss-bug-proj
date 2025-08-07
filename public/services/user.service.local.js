@@ -6,6 +6,7 @@ export const userService = {
     getByUsername,
     add,
     getEmptyCredentials,
+    remove,
 }
 
 const KEY = 'userDB'
@@ -26,7 +27,7 @@ function getByUsername(username) {
 function add(user) {
     const { username, password, fullname } = user
     if (!username || !password || !fullname) return Promise.reject('Missing credetials')
-        
+
     return getByUsername(username)
         .then(existingUser => {
             if (existingUser) return Promise.reject('Username taken')
@@ -39,6 +40,11 @@ function add(user) {
         })
 }
 
+function remove(userId) {
+    return storageService.remove(KEY, userId)
+}
+
+
 function getEmptyCredentials() {
     return {
         username: '',
@@ -47,7 +53,7 @@ function getEmptyCredentials() {
     }
 }
 
-// _createAdmin()
+_createAdmin()
 function _createAdmin() {
     const admin = {
         username: 'admin',

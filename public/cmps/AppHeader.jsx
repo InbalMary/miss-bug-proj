@@ -25,6 +25,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/bug">Bugs</NavLink>
             <NavLink to="/about">About</NavLink>
+            {loggedinUser && loggedinUser.isAdmin && <NavLink to="/user">Manage Users</NavLink>}            
             {
                 !loggedinUser ?
                     <NavLink to="/auth" >Login</NavLink> :
