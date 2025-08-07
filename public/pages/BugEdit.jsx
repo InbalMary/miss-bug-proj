@@ -1,4 +1,4 @@
-import { bugService } from "../services/bug.service.js"
+import { bugService } from "../services/bug.service.local.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 
 const { useState, useEffect } = React

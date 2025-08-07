@@ -45,7 +45,8 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         }))
     }
 
-    const { txt, minSeverity, sortBy, sortDir, labels } = filterByToEdit
+    const { txt, minSeverity, sortBy, sortDir } = filterByToEdit
+    const labels = filterByToEdit.labels || []
     const labelOptions = ['critical', 'need-CR', 'dev-branch', 'minor']
     return (
         <section className="bug-filter">

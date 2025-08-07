@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
-import { bugService } from '../services/bug.service.js'
+import { bugService } from '../services/bug.service.local.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
@@ -25,6 +25,7 @@ export function BugIndex() {
 
     function getTotalCount() {
         bugService.getTotalBugs().then((count) => {
+            console.log('count', count)
             const buttons = []
             buttons.length = count
             buttons.fill({ disabled: false }, 0, count)

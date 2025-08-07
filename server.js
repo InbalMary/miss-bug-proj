@@ -51,7 +51,7 @@ app.get('/api/bug/totalBugs', (req, res) => {
 //* Create
 app.post('/api/bug', (req, res) => {
     const loggedinUser = authService.validateToken(req.cookies.loginToken)
-    if (!loggedinUser) return res.status(401).send('Cannot add car')
+    if (!loggedinUser) return res.status(401).send('Cannot add bug')
 
     console.log('req.body', req.body)
     const { title, description, severity, labels } = req.body
@@ -75,7 +75,7 @@ app.post('/api/bug', (req, res) => {
 //* Update
 app.put('/api/bug/:bugId', (req, res) => {
     const loggedinUser = authService.validateToken(req.cookies.loginToken)
-    if (!loggedinUser) return res.status(401).send('Cannot update car')
+    if (!loggedinUser) return res.status(401).send('Cannot update bug')
 
     const { title, description, severity, labels, _id, creator } = req.body
 
@@ -140,7 +140,7 @@ app.get('/api/bug/:id', (req, res) => {
 //* Remove/Delete
 app.delete('/api/bug/:id', (req, res) => {
     const loggedinUser = authService.validateToken(req.cookies.loginToken)
-    if (!loggedinUser) return res.status(401).send('Cannot delete car')
+    if (!loggedinUser) return res.status(401).send('Cannot delete bug')
 
     const bugId = req.params
 
