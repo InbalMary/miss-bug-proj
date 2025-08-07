@@ -1,9 +1,9 @@
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
-import { userService } from "../services/user.service.local.js"
+import { userService } from "../services/user.service.js"
 import { BugList } from '../cmps/BugList.jsx'
-import { bugService } from '../services/bug.service.local.js'
+import { bugService } from '../services/bug.service.js'
 
 export function UserDetails() {
 

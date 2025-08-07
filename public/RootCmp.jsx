@@ -3,7 +3,7 @@ const { useState } = React
 const Router = ReactRouterDOM.BrowserRouter
 const { Route, Routes } = ReactRouterDOM
 
-import { authService } from './services/auth.service.local.js'
+import { authService } from './services/auth.service.js'
 
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'

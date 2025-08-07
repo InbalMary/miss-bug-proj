@@ -1,7 +1,7 @@
 const { Link, NavLink } = ReactRouterDOM
 const { useNavigate } = ReactRouter
 
-import { authService } from '../services/auth.service.local.js'
+import { authService } from '../services/auth.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function AppHeader({ loggedinUser, setLoggedinUser }) {

@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM
 
-import { authService } from '../services/auth.service.local.js'
+import { authService } from '../services/auth.service.js'
 import { BugPreview } from './BugPreview.jsx'
 
 export function BugList({ bugs, onRemoveBug, onEditBug }) {

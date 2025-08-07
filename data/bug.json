@@ -1,5 +1,52 @@
 [
   {
+    "title": "miki 2",
+    "description": "cdsacx",
+    "severity": 2,
+    "labels": [
+      "critical"
+    ],
+    "_id": "ZlVTe",
+    "createdAt": 1754571617626,
+    "creator": {
+      "username": "miki",
+      "fullname": "miki mi",
+      "_id": "to6B1"
+    }
+  },
+  {
+    "title": "miki mi bug",
+    "description": "csdfvcfd",
+    "severity": 8,
+    "labels": [
+      "dev-branch"
+    ],
+    "_id": "Gx1hU",
+    "createdAt": 1754571360309,
+    "creator": {
+      "username": "miki",
+      "fullname": "miki mi",
+      "_id": "to6B1"
+    }
+  },
+  {
+    "title": "kiki bug",
+    "description": "dfsfc",
+    "severity": 7,
+    "labels": [
+      "critical"
+    ],
+    "_id": "GHNZB",
+    "createdAt": 1754570237563,
+    "creator": {
+      "_id": "u101",
+      "username": "Kiki",
+      "fullname": "Kiki Ku",
+      "score": 100,
+      "isAdmin": true
+    }
+  },
+  {
     "title": "Creating new bug kuki",
     "description": "post from postman2",
     "severity": 999,

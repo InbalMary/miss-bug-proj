@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
-import { userService } from "../services/user.service.local.js"
+import { userService } from "../services/user.service.js"
 
 export function UserIndex() {
     const [users, setUsers] = useState([])

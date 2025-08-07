@@ -26,5 +26,11 @@
     "fullname": "Shuki shuk",
     "password": "secret4",
     "_id": "xP5hN"
+  },
+  {
+    "username": "miki",
+    "password": "miki",
+    "fullname": "miki mi",
+    "_id": "to6B1"
   }
 ]

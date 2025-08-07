@@ -1,6 +1,6 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
-import { authService } from './auth.service.local.js'
+import { authService } from './auth.service.js'
 
 const STORAGE_KEY = 'bugs'
 const PAGE_SIZE = 4

@@ -26,6 +26,7 @@ app.get('/api/bug', (req, res) => {
         pageIdx: parseInt(req.query.pageIdx) || 0,
         sortBy: req.query.sortBy || '',
         sortDir: +req.query.sortDir || 1,
+        creator: req.query.creator || ''
     }
 
     bugService.query(filterBy)
