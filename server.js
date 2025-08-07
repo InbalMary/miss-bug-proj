@@ -203,6 +203,33 @@ app.get('/api/user/:userId', (req, res) => {
         })
 })
 
+app.delete('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    bugService.query({ creator: userId })
+        .then(userBugs => {
+            if (userBugs.length > 0) {
+                console.log(`Cannot delete user ${userId} because they own bugs bugs-len:${userBugs.length}.`) // ✅ שונה כאן
+                return res.status(400).send('Cannot delete user because they own bugs')
+            } else {
+                console.log('hello');
+                userService.remove(userId)
+                    .then(() => {
+                        loggerService.info(`User ${userId} deleted successfully`)
+                        res.status(200).send(`User ${userId} deleted successfully`)
+                    })
+                    .catch(err => {
+                        loggerService.error(`Error deleting user ${userId}:`, err)
+                        res.status(500).send('Error deleting user')
+                    })
+            }
+        })
+        .catch(err => {
+            loggerService.error(`Error checking bugs for user ${userId}:`, err)
+            res.status(500).send('Error checking bugs for user')
+        })
+})
+
 // Auth API
 app.post('/api/auth/login', (req, res) => {
     const credentials = req.body

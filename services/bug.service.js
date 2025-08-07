@@ -27,7 +27,7 @@ function query(filterBy = {}) {
     }
 
     if (filterBy.creator) {
-        bugs = bugs.filter(bug => bug.creator && bug.creator._id === filterBy.creator)
+        bugsToDisplay = bugsToDisplay.filter(bug => bug.creator && bug.creator._id === filterBy.creator)
     }
 
     if (Array.isArray(filterBy.labels) && filterBy.labels.length > 0) {
@@ -48,11 +48,12 @@ function query(filterBy = {}) {
         })
     }
 
+    totalPages = Math.ceil(bugsToDisplay.length / BUGS_PER_PAGE)
+
     if (filterBy.pageIdx !== undefined) {
         //     const startIdx = filterBy.pageIdx * PAGE_SIZE // 0, 3, 6
         //     bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE)
 
-        totalPages = Math.floor(bugsToDisplay.length / BUGS_PER_PAGE)
         let pageIdx = filterBy.pageIdx
 
         if (pageIdx < 0) pageIdx = totalPages - 1

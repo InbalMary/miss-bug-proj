@@ -1,6 +1,7 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
+import { showErrorMsg } from "../services/event-bus.service.js"
 import { userService } from "../services/user.service.js"
 
 export function UserIndex() {
@@ -17,7 +18,10 @@ export function UserIndex() {
             .then(() => {
                 setUsers(users.filter(user => user._id !== userId))
             })
-            .catch(err => console.log('err', err))
+            .catch(err => {
+                showErrorMsg(err.response.data)
+                console.log(err)
+            })
     }
 
     return (

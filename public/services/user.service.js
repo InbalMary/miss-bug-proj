@@ -26,3 +26,8 @@ function getEmptyCredentials() {
         fullname: ''
     }
 }
+
+function remove(userId) {
+    return axios.delete(BASE_URL + userId)
+        .then(res => res.data)
+}
