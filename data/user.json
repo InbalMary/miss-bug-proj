@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "u101",
+    "username": "Kiki",
+    "fullname": "Kiki Ku",
+    "password": "secret1",
+    "score": 100,
+    "isAdmin": true
+  },
+  {
+    "_id": "u102",
+    "username": "Muki",
+    "fullname": "Muki Ma",
+    "password": "secret2",
+    "score": 100
+  },
+  {
+    "_id": "u103",
+    "username": "Puki",
+    "fullname": "Puki Ja",
+    "password": "secret2",
+    "score": 100
+  }
+]
