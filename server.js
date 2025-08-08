@@ -8,6 +8,7 @@ import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 import { userService } from './services/user.service.js'
 import { authService } from './services/auth.service.js'
+import { pdfService } from './services/pdf.service.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -107,7 +108,7 @@ app.get('/api/bug/download-pdf', (req, res) => {
             const doc = new PDFDocument({ margin: 30, size: 'A4', layout: 'landscape' })
             doc.pipe(res)
 
-            return createPdf(doc, bugs).then(() => doc.end())
+            return pdfService.createPdf(doc, bugs).then(() => doc.end())
         })
         .catch(err => {
             loggerService.error('PDF creation failed', err)
@@ -155,32 +156,6 @@ app.delete('/api/bug/:id', (req, res) => {
             res.status(400).send(err)
         })
 })
-
-function createPdf(doc, bugs) {
-    const table = {
-        title: 'Bugs',
-        subtitle: 'List of all bugs:',
-        headers: ['Title', 'Severity', 'Description', 'Created At', 'Labels'],
-        rows: bugs.map(bug => [
-            bug.title,
-            +bug.severity,
-            bug.description,
-            formatDate(bug.createdAt),
-            (bug.labels || []).join(', ')
-        ])
-    }
-
-    return doc.table(table, { columnsSize: [100, 70, 150, 90, 100] })
-}
-
-function formatDate(timestamp) {
-    const date = new Date(timestamp)
-    const day = String(date.getDate()).padStart(2, '0')
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const year = String(date.getFullYear()).slice(-2)
-
-    return `${day}/${month}/${year}`
-}
 
 // User API
 app.get('/api/user', (req, res) => {
